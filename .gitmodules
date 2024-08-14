@@ -7,3 +7,6 @@
 [submodule "edk2-non-osi"]
 	path = edk2-non-osi
 	url = https://github.com/tianocore/edk2-non-osi.git
+[submodule "acpica"]
+	path = acpica
+	url = https://github.com/acpica/acpica.git
