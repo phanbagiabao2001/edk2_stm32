@@ -1,0 +1,42 @@
+#/** @file
+#
+#  Copyright (c) 2024, Phan Ba Gia Bao <phanbagiabao2001@gmail.com>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+#**/
+
+[Defines]
+  INF_VERSION                    = 0x0001001A
+  BASE_NAME                      = PlatformUiAppLib
+  FILE_GUID                      = 70A91B2A-86E4-4323-8527-49FCED4B8898
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = NULL|DXE_DRIVER UEFI_APPLICATION
+  CONSTRUCTOR                    = PlatformUiAppLibConstructor
+  DESTRUCTOR                     = PlatformUiAppLibDestructor
+
+[Sources]
+  PlatformUiAppLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  Platform/STM32/STM32.dec
+
+[LibraryClasses]
+  UefiLib
+  UefiBootServicesTableLib
+  BaseMemoryLib
+  DebugLib
+  PrintLib
+  UefiBootManagerLib
+  MemoryAllocationLib
+
+[Guids]
+
+[Protocols]
+
+[FeaturePcd]
+
+[Pcd]

@@ -1,0 +1,36 @@
+/** @file
+ *
+ *  PCI Express Memory-mapped Configuration Space base address description table (MCFG)
+ *
+ *  Copyright (c) 2024, Phan Ba Gia Bao <phanbagiabao2001@gmail.com>
+ *
+ *  SPDX-License-Identifier: BSD-2-Clause-Patent
+ *
+ **/
+
+#include "AcpiTables.h"
+
+//
+// MCFG is patched by AcpiPlatformDxe.
+//
+
+STM32_MCFG_TABLE Mcfg = {
+  {
+    ACPI_HEADER (
+      EFI_ACPI_6_4_PCI_EXPRESS_MEMORY_MAPPED_CONFIGURATION_SPACE_BASE_ADDRESS_DESCRIPTION_TABLE_SIGNATURE,
+      STM32_MCFG_TABLE,
+      EFI_ACPI_MEMORY_MAPPED_CONFIGURATION_SPACE_ACCESS_TABLE_REVISION
+      ),
+  },
+  { // Main config space
+    {
+      0x48400000,
+      0,  // PciSegmentNumber
+      1,  // PciBusMin
+      1,  // PciBusMax
+      0   // Reserved
+    }
+  } 
+};
+
+VOID* CONST ReferenceAcpiTable = &Mcfg;

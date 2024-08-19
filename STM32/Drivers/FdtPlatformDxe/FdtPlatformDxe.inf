@@ -1,0 +1,55 @@
+#/** @file
+#
+#  Flattened Device Tree platform driver
+#
+#  Copyright (c) 2024, Phan Ba Gia Bao <phanbagiabao2001@gmail.com>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+#**/
+
+[Defines]
+  INF_VERSION                    = 0x0001001A
+  BASE_NAME                      = FdtPlatformDxe
+  FILE_GUID                      = 86fda33a-4e9e-4954-8cdc-0e88a2ef68ed
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = FdtPlatformDxeInitialize
+
+[Sources]
+  FdtPlatformDxe.c
+
+[Packages]
+  EmbeddedPkg/EmbeddedPkg.dec
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  Platform/STM32/STM32.dec
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+  PrintLib
+  DxeServicesLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  UefiLib
+  FdtLib
+
+[Guids]
+  gFdtTableGuid
+  gDtPlatformDefaultDtbFileGuid
+  gEfiEventReadyToBootGuid
+  gEfiEventExitBootServicesGuid
+
+[Protocols]
+  gEfiLoadedImageProtocolGuid
+  gEfiSimpleFileSystemProtocolGuid
+
+[Pcd]
+  gSTM32TokenSpaceGuid.PcdDeviceTreeName
+  gSTM32TokenSpaceGuid.PcdSystemTableMode
+  gSTM32TokenSpaceGuid.PcdFdtSupportOverrides
+ 
+[Depex]
+  TRUE

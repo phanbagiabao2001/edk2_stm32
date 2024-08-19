@@ -1,0 +1,88 @@
+#/** @file
+#
+#  Support for the FS-backed "flash" device.
+#  The trick is to keep it inside the RPI firmware file itself...
+#
+#  Copyright (c) 2024, Phan Ba Gia Bao <phanbagiabao2001@gmail.com>
+#  Copyright (c) 2006-2013, Intel Corporation. All rights reserved.
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+#**/
+
+[Defines]
+  INF_VERSION                    = 0x0001001A
+  BASE_NAME                      = VarBlockServiceDxe
+  FILE_GUID                      = e0f22c3e-d5c7-478d-bfe8-6ba59e9798cb
+  MODULE_TYPE                    = DXE_RUNTIME_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = FvbInitialize
+
+#
+# The following information is for reference only and not required by the build
+# tools.
+#
+#  VALID_ARCHITECTURES           = AARCH64
+#
+
+[Sources]
+  FvbInfo.c
+  VarBlockService.h
+  VarBlockService.c
+  VarBlockServiceDxe.c
+  FileIo.c
+
+[Packages]
+  ArmPkg/ArmPkg.dec
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  Platform/STM32/STM32.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  DevicePathLib
+  DxeServicesTableLib
+  MemoryAllocationLib
+  PcdLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  UefiRuntimeLib
+
+[Guids]
+  gEfiEventVirtualAddressChangeGuid
+  gSTM32EventResetGuid
+  gEfiEventReadyToBootGuid
+
+[Protocols]
+  gEfiSimpleFileSystemProtocolGuid
+  gEfiLoadedImageProtocolGuid
+  gEfiBlockIoProtocolGuid
+  gEfiFirmwareVolumeBlockProtocolGuid           # PROTOCOL SOMETIMES_PRODUCED
+  gEfiDevicePathProtocolGuid                    # PROTOCOL SOMETIMES_PRODUCED
+
+[FixedPcd]
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableSize
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingSize
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize
+  gSTM32TokenSpaceGuid.PcdNvStorageVariableBase
+  gSTM32TokenSpaceGuid.PcdNvStorageFtwWorkingBase
+  gSTM32TokenSpaceGuid.PcdNvStorageFtwSpareBase
+  gSTM32TokenSpaceGuid.PcdNvStorageEventLogSize
+  gSTM32TokenSpaceGuid.PcdFirmwareBlockSize
+  gArmTokenSpaceGuid.PcdFdBaseAddress
+  gArmTokenSpaceGuid.PcdFdSize
+
+[Pcd]
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingBase
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareBase
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase
+  gSTM32TokenSpaceGuid.PcdNvStorageEventLogBase
+  gSTM32TokenSpaceGuid.PcdPlatformResetDelay
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase64
+
+[FeaturePcd]
+
+[Depex]
+  TRUE

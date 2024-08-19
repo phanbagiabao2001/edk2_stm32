@@ -1,0 +1,83 @@
+## @file
+#
+#  Copyright (c) 2024, Phan Ba Gia Bao <phanbagiabao2001@gmail.com>
+#  Copyright (c) 2016, Linaro, Ltd. All rights reserved.
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  DEC_SPECIFICATION              = 0x0001001A
+  PACKAGE_NAME                   = STM32
+  PACKAGE_GUID                   = 629F2E78-B9D0-46AE-9380-90951430CD89
+  PACKAGE_VERSION                = 1.0
+
+[Includes]
+  Include
+
+[Protocols]
+  gSTM32FirmwareProtocolGuid = { 0xA10995FC, 0xA7C6, 0x4AC3, { 0xA1, 0xFF, 0x4E, 0x3E, 0xCF, 0x73, 0xBA, 0x78}}
+  gSTM32ConfigAppliedProtocolGuid = {0X829A8C97, 0XA377, 0X45EC, {0XBD, 0XE1, 0X31, 0XBD, 0X75, 0X8A, 0XBE, 0XD9}}
+  gSTM32MmcHostProtocolGuid = {0xc8f374a3, 0x8c68, 0x41c7, {0x91, 0xec, 0x21, 0xf4, 0xf0, 0xc2, 0x8d, 0xc8}}
+
+[Guids]
+  gSTM32TokenSpaceGuid = {0x8E4BA4F8, 0x0983, 0x43FC, {0xA4, 0x9E, 0xD1, 0xF3, 0xC9, 0x37, 0x11, 0xE9}}
+  gSTM32EventResetGuid = {0x8E4BA4F8, 0x0983, 0x43FC, {0xA4, 0x9E, 0xD1, 0xF4, 0xC4, 0x34, 0x14, 0xE4}}
+  gConfigDxeFormSetGuid = {0x8E4BA4F8, 0x0983, 0x86FC, {0xA4, 0x22, 0xD1, 0xF3, 0xC9, 0x37, 0x11, 0xE9}}
+
+[PcdsFixedAtBuild.common]
+  #
+  # Space reserved for config.txt-specced DTB follows right after the FD image
+  # in STM32MP25 implementations.
+  #
+  gSTM32TokenSpaceGuid.PcdFdtBaseAddress|0x0|UINT32|0x00000001
+  gSTM32TokenSpaceGuid.PcdFirmwareBlockSize|0x0|UINT32|0x00000002
+  gSTM32TokenSpaceGuid.PcdNvStorageEventLogBase|0x0|UINT32|0x00000003
+  gSTM32TokenSpaceGuid.PcdNvStorageEventLogSize|0x0|UINT32|0x00000004
+  gSTM32TokenSpaceGuid.PcdNvStorageVariableBase|0x0|UINT32|0x00000005
+  gSTM32TokenSpaceGuid.PcdNvStorageFtwSpareBase|0x0|UINT32|0x00000006
+  gSTM32TokenSpaceGuid.PcdNvStorageFtwWorkingBase|0x0|UINT32|0x00000007
+  gSTM32TokenSpaceGuid.PcdFdtSize|0x10000|UINT32|0x00000009
+  gSTM32TokenSpaceGuid.PcdCpuLowSpeedMHz|600|UINT32|0x0000000a
+  gSTM32TokenSpaceGuid.PcdCpuDefSpeedMHz|800|UINT32|0x0000000b
+  gSTM32TokenSpaceGuid.PcdCpuMaxSpeedMHz|1000|UINT32|0x0000000c
+  gSTM32TokenSpaceGuid.PcdGicInterruptInterfaceHBase|0x0|UINT64|0x00000030
+  gSTM32TokenSpaceGuid.PcdGicInterruptInterfaceVBase|0x0|UINT64|0x00000031
+  gSTM32TokenSpaceGuid.PcdGicGsivId|0x0|UINT32|0x00000032
+  gSTM32TokenSpaceGuid.PcdGicPmuIrq0|0x0|UINT32|0x00000033
+  gSTM32TokenSpaceGuid.PcdGicPmuIrq1|0x0|UINT32|0x00000034
+  gSTM32TokenSpaceGuid.PcdGicPmuIrq2|0x0|UINT32|0x00000035
+  gSTM32TokenSpaceGuid.PcdGicPmuIrq3|0x0|UINT32|0x00000036
+
+  ## PL180 MCI
+  gSTM32TokenSpaceGuid.PcdPL180SysMciRegAddress|0x00000000|UINT32|0x00000037
+  gSTM32TokenSpaceGuid.PcdPL180MciBaseAddress|0x00000000|UINT32|0x00000038
+
+  # FDT
+  gSTM32TokenSpaceGuid.PcdFdtSupportOverrides|0x0|UINT32|0x00000039
+  gSTM32TokenSpaceGuid.PcdDeviceTreeName|"Unknown"|VOID*|0x00000040
+
+[PcdsFixedAtBuild, PcdsPatchableInModule, PcdsDynamic, PcdsDynamicEx]
+  gSTM32TokenSpaceGuid.PcdCpuClock|0|UINT32|0x0000000d
+  gSTM32TokenSpaceGuid.PcdSdIsArasan|0|UINT32|0x0000000e
+  gSTM32TokenSpaceGuid.PcdMmcForce1Bit|0|UINT32|0x0000000f
+  gSTM32TokenSpaceGuid.PcdMmcForceDefaultSpeed|0|UINT32|0x00000010
+  gSTM32TokenSpaceGuid.PcdMmcSdDefaultSpeedMHz|0|UINT32|0x00000011
+  gSTM32TokenSpaceGuid.PcdMmcSdHighSpeedMHz|0|UINT32|0x00000012
+  gSTM32TokenSpaceGuid.PcdMmcDisableMulti|0|UINT32|0x00000013
+  gSTM32TokenSpaceGuid.PcdDebugEnableJTAG|0|UINT32|0x00000014
+  gSTM32TokenSpaceGuid.PcdCustomCpuClock|0|UINT32|0x00000016
+  gSTM32TokenSpaceGuid.PcdDisplayEnableScaledVModes|0x3F|UINT8|0x00000017
+  gSTM32TokenSpaceGuid.PcdDisplayEnableSShot|0|UINT32|0x00000018
+  gSTM32TokenSpaceGuid.PcdSystemTableMode|1|UINT32|0x0000001B
+  gSTM32TokenSpaceGuid.PcdRamMoreThan3GB|0|UINT32|0x00000019
+  gSTM32TokenSpaceGuid.PcdRamLimitTo3GB|0|UINT32|0x0000001A
+  gSTM32TokenSpaceGuid.PcdFanOnGpio|0|UINT32|0x0000001C
+  gSTM32TokenSpaceGuid.PcdFanTemp|0|UINT32|0x0000001D
+  gSTM32TokenSpaceGuid.PcdPlatformResetDelay|0|UINT32|0x0000001E
+  gSTM32TokenSpaceGuid.PcdMmcEnableDma|0|UINT32|0x0000001F
+  gSTM32TokenSpaceGuid.PcdUartInUse|1|UINT32|0x00000021
+  gSTM32TokenSpaceGuid.PcdXhciPci|0|UINT32|0x00000022
+  gSTM32TokenSpaceGuid.PcdMiniUartClockRate|0|UINT32|0x00000023
+  gSTM32TokenSpaceGuid.PcdXhciReload|0|UINT32|0x00000024

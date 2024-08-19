@@ -1,0 +1,63 @@
+#/** @file
+#
+#  ACPI table data and ASL sources required to boot the platform.
+#
+#  Copyright (c) 2024, Phan Ba Gia Bao <phanbagiabao2001@gmail.com>
+#  Copyright (c) 2019-2021, ARM Limited. All rights reserved.
+#  Copyright (c) Microsoft Corporation. All rights reserved.
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+#**/
+
+[Defines]
+  INF_VERSION                    = 0x0001001A
+  BASE_NAME                      = AcpiTables
+  FILE_GUID                      = AF6AB56B-EB7F-400D-8C2B-D8629A40E8C8
+  MODULE_TYPE                    = USER_DEFINED
+  VERSION_STRING                 = 1.0
+  ST_COMMON_ACPI_DIR             = Platform/STM32/AcpiTables
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = AARCH64
+#
+
+[Sources]
+  AcpiTables.h
+  Dsdt.asl
+  Madt.aslc
+  Mcfg.aslc
+  Fadt.aslc
+  Dbg2.aslc
+  Gtdt.aslc
+  Spcr.aslc
+  
+[Packages]
+  ArmPkg/ArmPkg.dec
+  ArmPlatformPkg/ArmPlatformPkg.dec
+  EmbeddedPkg/EmbeddedPkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  MdePkg/MdePkg.dec
+  Platform/STM32/STM32.dec
+
+[FixedPcd]
+  gArmTokenSpaceGuid.PcdArmArchTimerIntrNum
+  gArmTokenSpaceGuid.PcdArmArchTimerHypIntrNum
+  gArmTokenSpaceGuid.PcdArmArchTimerSecIntrNum
+  gArmTokenSpaceGuid.PcdArmArchTimerVirtIntrNum
+  gArmTokenSpaceGuid.PcdGicInterruptInterfaceBase
+  gArmTokenSpaceGuid.PcdGicDistributorBase
+  gEfiMdePkgTokenSpaceGuid.PcdUartDefaultBaudRate
+  gEmbeddedTokenSpaceGuid.PcdInterruptBaseAddress
+  gSTM32TokenSpaceGuid.PcdGicInterruptInterfaceHBase
+  gSTM32TokenSpaceGuid.PcdGicInterruptInterfaceVBase
+  gSTM32TokenSpaceGuid.PcdGicGsivId
+  gSTM32TokenSpaceGuid.PcdGicPmuIrq0
+  gSTM32TokenSpaceGuid.PcdGicPmuIrq1
+  gSTM32TokenSpaceGuid.PcdGicPmuIrq2
+  gSTM32TokenSpaceGuid.PcdGicPmuIrq3
+
+#[BuildOptions]
+#  GCC:*_*_*_ASL_FLAGS       = -vw3133 -vw3150
